@@ -80,11 +80,13 @@ def prepare_image(image_bytes, is_mnist):
     )
     
     if is_mnist:
+        image = image.convert("L")
         transform = transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize((0.5,), (0.5,)),
         ])
     else:
+        image = image.convert("RGB")
         transform = transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
